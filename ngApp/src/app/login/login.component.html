@@ -1,0 +1,22 @@
+<form class="container mt-5 border border-grey rounded p-5">
+
+  <div class="form-group row">
+
+    <div class="form-group col-md-6">
+      <input [(ngModel)]="loginUserData.username" name="username" type="text" class="form-control" placeholder="Nom d'utilisateur" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <input [(ngModel)]="loginUserData.password" name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+    </div>
+
+  </div>
+  <div class="row col-md-12">
+
+    <button (click)="loginUser()" type="button" class="btn btn-success float-right">Login</button>
+    <label for="registerProposal" class="ml-auto text-dark mt-2 mr-3"><span>Pas encore de compte ?</span></label>
+    <a class="mt-2 text-color--main" routerLink="/register">Inscription</a>
+
+  </div>
+
+</form>

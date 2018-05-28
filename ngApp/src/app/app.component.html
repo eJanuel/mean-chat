@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Shlack</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/chatbox" routerLinkActive="active">Chatbox<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/special" routerLinkActive="active">Members<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Connexion</a>
+      </li>
+
+      <li class="nav-item dropdown mr-4">
+        <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()"></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" style="cursor: pointer;" href="" (click)="_authService.logoutUser()">Déconnexion</a>
+          <a class="dropdown-item">Profil</a>
+          <a class="dropdown-item">Préférences</a>
+        </div>
+      </li>
+
+    </ul>
+    
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
