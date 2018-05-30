@@ -17,7 +17,7 @@
       </li>
 
       <li class="nav-item dropdown mr-4">
-        <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()"></a>
+        <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()">Mon compte</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" style="cursor: pointer;" href="" (click)="_authService.logoutUser()">Déconnexion</a>
           <a class="dropdown-item">Profil</a>
