@@ -70,76 +70,26 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/events', (req,res) => {
-  let events = [
-      {
-        "id": "1",
-        "name": "Auto Expo",
-        "description": "lorem ipsum",
-        "date": "2012-04-23T18:25:43.511Z"
-      },
-      {
-        "id": "2",
-        "name": "Auto Expo",
-        "description": "lorem ipsum",
-        "date": "2012-04-23T18:25:43.511Z"
-      },
-      {
-        "id": "3",
-        "name": "Auto Expo",
-        "description": "lorem ipsum",
-        "date": "2012-04-23T18:25:43.511Z"
-      },
-      {
-        "id": "4",
-        "name": "Auto Expo",
-        "description": "lorem ipsum",
-        "date": "2012-04-23T18:25:43.511Z"
-      },
-      {
-        "id": "5",
-        "name": "Auto Expo",
-        "description": "lorem ipsum",
-        "date": "2012-04-23T18:25:43.511Z"
-      }
-  ]  
-    res.json(events)
+router.get('/profile', verifyToken, (req, res) => {
+
 })
 
-router.get('/special', verifyToken, (req,res) => {
-    let events = [
+router.get('/friends', verifyToken, (req,res) => {
+    let friends = [
         {
-          "id": "1",
-          "name": "Auto Expo",
-          "description": "lorem ipsum",
-          "date": "2012-04-23T18:25:43.511Z"
+          "name": "Padami"
         },
         {
-          "id": "2",
-          "name": "Auto Expo",
-          "description": "lorem ipsum",
-          "date": "2012-04-23T18:25:43.511Z"
+          "name": "Padami2"
         },
         {
-          "id": "3",
-          "name": "Auto Expo",
-          "description": "lorem ipsum",
-          "date": "2012-04-23T18:25:43.511Z"
+          "name": "Padami3"
         },
         {
-          "id": "4",
-          "name": "Auto Expo",
-          "description": "lorem ipsum",
-          "date": "2012-04-23T18:25:43.511Z"
-        },
-        {
-          "id": "5",
-          "name": "Auto Expo",
-          "description": "lorem ipsum",
-          "date": "2012-04-23T18:25:43.511Z"
+          "name": "Salami"
         }
     ]  
-      res.json(events)
+      res.json(friends)
   })
 
 module.exports = router

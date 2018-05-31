@@ -7,13 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { EventsComponent } from './events/events.component';
-import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthService } from './auth.service';
-import { EventService } from './event.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { FriendsComponent } from './friends/friends.component';
+import { FriendService } from './friend.service';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './profile.service';
 
 
 @NgModule({
@@ -21,9 +22,9 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    EventsComponent,
-    SpecialEventsComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    FriendsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, EventService,
+  providers: [AuthService, AuthGuard, FriendService, ProfileService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

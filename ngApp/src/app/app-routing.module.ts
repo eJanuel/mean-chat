@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EventsComponent } from './events/events.component';
-import { SpecialEventsComponent } from './special-events/special-events.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { FriendsComponent } from './friends/friends.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/register',
+    redirectTo: '/chatbox',
     pathMatch: 'full'
   },
   {
@@ -18,8 +18,8 @@ const routes: Routes = [
     component: ChatboxComponent
   },
   {
-    path: 'special',
-    component: SpecialEventsComponent,
+    path: 'friends',
+    component: FriendsComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 

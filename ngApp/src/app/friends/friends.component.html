@@ -1,0 +1,11 @@
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" *ngFor="let friends of friends">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{friends.name}}</h5>
+        <button class="btn btn-primary">Discuss</button>
+        <button class="btn btn-danger">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>

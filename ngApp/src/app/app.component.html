@@ -1,13 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Shlack</a>
+  <a style="cursor: pointer;" class="navbar-brand">Shlack</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/chatbox" routerLinkActive="active">Chatbox<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/chatbox" routerLinkActive="active">Chatbox</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/special" routerLinkActive="active">Members<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/friends" routerLinkActive="active" *ngIf="_authService.loggedIn()">Friends</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav mr-auto" *ngIf="_authService.loggedIn()">
+      <li class="nav-item d-flex">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </li>
     </ul>
 
@@ -20,7 +27,7 @@
         <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()">Mon compte</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" style="cursor: pointer;" href="" (click)="_authService.logoutUser()">Déconnexion</a>
-          <a class="dropdown-item">Profil</a>
+          <a class="dropdown-item" href="" routerLink="/profile">Profil</a>
           <a class="dropdown-item">Préférences</a>
         </div>
       </li>
