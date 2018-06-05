@@ -14,6 +14,8 @@ mongoose.connect(db, err => {
     }
 })
 
+//Checking if the user have a Token in LocalStorage
+
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('Unauthorized request')
@@ -30,9 +32,13 @@ function verifyToken(req, res, next) {
     next()
 }
 
+//Redirecting base path
+
 router.get('/', (req, res) => {
     res.send('Hello from API')
 })
+
+//Registering new User
 
 router.post('/register', (req, res) => {
     let userData = req.body
@@ -47,6 +53,8 @@ router.post('/register', (req, res) => {
         }
     })
 })
+
+//Checking if the user is already registered
 
 router.post('/login', (req, res) => {
     let userData = req.body
@@ -69,6 +77,8 @@ router.post('/login', (req, res) => {
     })
 })
 
+//Query for displaying profile info
+
 router.get('/profile', verifyToken, (req, res) => {
     User.findOne({_id: req.userId}, (err, user) => {
         if (err) {
@@ -84,6 +94,8 @@ router.get('/profile', verifyToken, (req, res) => {
         }
     })
 })
+
+//Updating the Profile
 
 router.post('/profile', verifyToken, (req, res) => {
     let userData = req.body
@@ -102,6 +114,8 @@ router.post('/profile', verifyToken, (req, res) => {
     })
 })
 
+//Delete a Profile
+
 router.delete('/profile', verifyToken, (req, res) => {
     let userData = req.body
     User.deleteOne({_id: req.userId}, (err, user) => {
@@ -112,6 +126,8 @@ router.delete('/profile', verifyToken, (req, res) => {
         }
     })
 })
+
+//Search for UserProfile 
 
 router.post('/search', verifyToken, (req, res) => {
     let searchData = req.body
@@ -124,6 +140,8 @@ router.post('/search', verifyToken, (req, res) => {
     })
 })
 
+//Listing all the users
+
 router.get('/users', verifyToken, (req, res) => {
     User.find({ _id: { $ne: req.userId } }, (err, userData) => {
         if (err) {
@@ -133,6 +151,8 @@ router.get('/users', verifyToken, (req, res) => {
         }
     })
 })
+
+//Sending a message to the Shoutbox
 
 router.post('/shout', verifyToken, (req, res) => {
     let shoutData = req.body
@@ -153,6 +173,8 @@ router.post('/shout', verifyToken, (req, res) => {
     })
 })
 
+//Query for all Shoutbox messages
+
 router.get('/shout', verifyToken, (req, res) => {
     let userData = req.headers
     Shout.find({}, (err, shouts) => {
@@ -163,6 +185,8 @@ router.get('/shout', verifyToken, (req, res) => {
         }
     })
 })
+
+//Sending friends requests
 
 router.post('/friends/id', verifyToken, (req, res) => {
     User.findOne({_id: req.userId}, (err, res) => {
