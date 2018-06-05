@@ -24,3 +24,4 @@ And you're done !
 If you're having trouble running MongoDB, try to restart it : `sudo service mongod restart`
 
 ### Made by [eJanuel](https://github.com/eJanuel) for [PassNum](https://twitter.com/PasserelleMars?lang=fr)
+<img src="https://avatars2.githubusercontent.com/u/33619859?s=200&v=4" alt="Passerelle Numérique" width=100 />
