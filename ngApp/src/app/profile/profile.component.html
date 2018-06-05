@@ -3,34 +3,41 @@
     <div class="input-group-prepend">
       <span class="input-group-text">First name</span>
     </div>
-    <input type="text" class="form-control" value="{{ user.firstName }}">
+    <input [(ngModel)]="profile.firstName" type="text" class="form-control" value="{{ profile.firstName }}">
   </div>
 
   <div class="input-group input-group-sm my-1">
     <div class="input-group-prepend">
       <span class="input-group-text">Last name</span>
     </div>
-    <input type="text" class="form-control">
+    <input [(ngModel)]="profile.lastName" type="text" class="form-control" value="{{ profile.lastName }}">
   </div>
 
   <div class="input-group input-group-sm my-1">
     <div class="input-group-prepend">
       <span class="input-group-text">Username</span>
     </div>
-    <input type="text" class="form-control">
+    <input [(ngModel)]="profile.username" type="text" class="form-control" value="{{ profile.username }}">
   </div>
 
   <div class="input-group input-group-sm my-1">
     <div class="input-group-prepend">
       <span class="input-group-text">eMail</span>
     </div>
-    <input type="email" class="form-control">
+    <input [(ngModel)]="profile.eMail" type="email" class="form-control" value="{{ profile.eMail }}">
   </div>
 
   <div class="input-group input-group-sm my-1">
     <div class="input-group-prepend">
       <span class="input-group-text">Password</span>
     </div>
-    <input type="password" class="form-control">
+    <input [(ngModel)]="profile.password" type="password" class="form-control" value="{{ profile.password }}">
   </div>
+
+  <div class="d-flex flex-row-reverse">
+    <button class="col-md-1 btn btn-danger m-3" (click)="deleteProfile()">Delete</button>
+    <button class="col-md-1 btn btn-primary m-3" (click)="updateProfile()">Save</button>
+  </div>
+
+
 </div>

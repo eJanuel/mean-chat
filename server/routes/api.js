@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
 const User = require('../models/user')
+const Shout = require('../models/shout')
 const mongoose = require('mongoose')
 const db = "mongodb://127.0.0.1:27017/angularauth"
 
@@ -29,16 +30,16 @@ function verifyToken(req, res, next) {
     next()
 }
 
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
     res.send('Hello from API')
 })
 
-router.post('/register', (req,res) => {
+router.post('/register', (req, res) => {
     let userData = req.body
     let user = new User(userData)
-    user.save((error, registeredUser) => {
-        if (error) {
-            console.log(error)
+    user.save((err, registeredUser) => {
+        if (err) {
+            console.log(err)
         } else {
             let payload = { subject: registeredUser._id }
             let token = jwt.sign(payload, 'secretKey')
@@ -49,10 +50,9 @@ router.post('/register', (req,res) => {
 
 router.post('/login', (req, res) => {
     let userData = req.body
-
-    User.findOne({username: userData.username}, (error, user) => {
-        if (error) {
-            console.log(error)
+    User.findOne({username: userData.username}, (err, user) => {
+        if (err) {
+            console.log(err)
         } else {
             if (!user) {
                 res.status(401).send('Invalid username')
@@ -65,31 +65,113 @@ router.post('/login', (req, res) => {
                     res.status(200).send({ token })
                 }
             }
-            
         }
     })
 })
 
 router.get('/profile', verifyToken, (req, res) => {
-
+    User.findOne({_id: req.userId}, (err, user) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                username: user.username,
+                eMail: user.eMail,
+                password: user.password
+            })
+        }
+    })
 })
 
-router.get('/friends', verifyToken, (req,res) => {
-    let friends = [
-        {
-          "name": "Padami"
-        },
-        {
-          "name": "Padami2"
-        },
-        {
-          "name": "Padami3"
-        },
-        {
-          "name": "Salami"
+router.post('/profile', verifyToken, (req, res) => {
+    let userData = req.body
+    User.findOne({_id: req.userId}, (err, user) => {
+        if (err) {
+            console.log(err)
+        } else {
+            user.update({firstName: userData.firstName, lastName: userData.lastName, username: userData.username, eMail: userData.eMail, password: userData.password}, (error, updatedUserData) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(updatedUserData)
+                }
+            })
         }
-    ]  
-      res.json(friends)
-  })
+    })
+})
+
+router.delete('/profile', verifyToken, (req, res) => {
+    let userData = req.body
+    User.deleteOne({_id: req.userId}, (err, user) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(user)
+        }
+    })
+})
+
+router.post('/search', verifyToken, (req, res) => {
+    let searchData = req.body
+    User.findOne({username: searchData.input}, (err, searchData) => {
+        if (searchData) {
+            res.json({username: searchData.username})
+        } else {
+                console.log(err)
+        }
+    })
+})
+
+router.get('/users', verifyToken, (req, res) => {
+    User.find({ _id: { $ne: req.userId } }, (err, userData) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(userData)
+        }
+    })
+})
+
+router.post('/shout', verifyToken, (req, res) => {
+    let shoutData = req.body
+    User.findOne({_id: req.userId}, (err, user) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (shoutData.messageContent != '' && shoutData.messageContent != null) {
+                let shout = new Shout({messageContent: shoutData.messageContent, username: user.username, userId: user._id})
+                shout.save((err, res) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log(res)
+                    }
+            })
+        }}  
+    })
+})
+
+router.get('/shout', verifyToken, (req, res) => {
+    let userData = req.headers
+    Shout.find({}, (err, shouts) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(shouts)
+        }
+    })
+})
+
+router.post('/friends/id', verifyToken, (req, res) => {
+    User.findOne({_id: req.userId}, (err, res) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(res)
+        }
+    })
+})
 
 module.exports = router

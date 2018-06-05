@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { SearchComponent } from './search/search.component';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,8 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService,
+    private _searchComponent: SearchComponent,
+    private _profileService: ProfileService) {}
 }

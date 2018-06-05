@@ -7,14 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { MessageService } from './message.service';
 import { FriendsComponent } from './friends/friends.component';
 import { FriendService } from './friend.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './profile.service';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './search.service';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+
 
 
 @NgModule({
@@ -24,7 +28,8 @@ import { ProfileService } from './profile.service';
     LoginComponent,
     ChatboxComponent,
     FriendsComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { ProfileService } from './profile.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, FriendService, ProfileService,
+  providers: [AuthGuard, AuthService, FriendService, ProfileService, SearchService, SearchComponent, MessageService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

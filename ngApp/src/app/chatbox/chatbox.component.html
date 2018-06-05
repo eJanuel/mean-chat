@@ -1,9 +1,13 @@
-<div class="container mt-5 border border-grey rounded">
-  <div id="shoutbox-content" class=""></div>
+<div id="shoutbox-content" class="container mt-5 border border-grey rounded">
+  <div *ngFor="let shouts of shouts" class="shouts d-flex text-dark mx-auto p-1 m-2">
+    <p class="m-0 p-0 my-auto"><span class="text-primary">{{ shouts.username }}</span> : {{ shouts.messageContent }}</p>
+  </div>
+</div>
+<div class="container mt-2 border border-grey rounded">
   <form>
     <div class="form-inline row">
-      <input type="text" class="form-control col-md-11 border-0" id="inputMessage" placeholder="Votre message..">
-      <button class="btn btn-primary col-md-1 border-0" id="buttonSend" name="button">Send</button>
+      <input [(ngModel)]="shoutData.messageContent" name="messageContent" type="text" class="form-control col-md-11 border-0" id="inputMessage" placeholder="Your message..">
+      <button class="btn btn-primary col-md-1 border-0" (click)="this.shoutMessage()">Send</button>
     </div>
   </form>
 </div>

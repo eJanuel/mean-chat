@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 })
 export class FriendsComponent implements OnInit {
 
-  friends = [];
+  userData = {}
+  friends = []
   constructor(private _friendService: FriendService,
-    private _router: Router) { }
+    private _router: Router,) { }
 
   ngOnInit() {
     this._friendService.getFriends()
@@ -25,7 +26,15 @@ export class FriendsComponent implements OnInit {
           }
         }
       }
-    );
+    )
   }
 
+  sendRequest(userData) {
+    console.log('1' + userData)
+    this._friendService.sendRequest(userData)
+    .subscribe(
+      err => console.log(err),
+      res => console.log(res)
+    )
+  }
 }

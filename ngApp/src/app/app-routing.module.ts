@@ -6,11 +6,12 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
 import { FriendsComponent } from './friends/friends.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/chatbox',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   }
 ];
 

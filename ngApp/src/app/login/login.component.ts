@@ -24,7 +24,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this._router.navigate(['/chatbox']);
       },
-      err => console.log(err)
-    );
+      err => this.sendError(err)
+    )
+  }
+  
+  sendError(err) {
+    if (err = 401) {
+      document.querySelector('span').classList.remove('d-none')
+    } else {
+      console.log('unknown error')
+    }
   }
 }

@@ -13,22 +13,22 @@
 
     <ul class="navbar-nav mr-auto" *ngIf="_authService.loggedIn()">
       <li class="nav-item d-flex">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input [(ngModel)]="this._searchComponent.searchData.input" class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/search" (click)="this._searchComponent.search()">Search</button>
       </li>
     </ul>
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Connexion</a>
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Log in</a>
       </li>
 
       <li class="nav-item dropdown mr-4">
-        <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()">Mon compte</a>
+        <a class="nav-link dropdown-toggle" id="userName" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()">My Account</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" style="cursor: pointer;" href="" (click)="_authService.logoutUser()">Déconnexion</a>
-          <a class="dropdown-item" href="" routerLink="/profile">Profil</a>
-          <a class="dropdown-item">Préférences</a>
+          <a class="dropdown-item" style="cursor: pointer;" href="" (click)="_authService.logoutUser()">Log out</a>
+          <a class="dropdown-item" href="" routerLink="/profile">Profile</a>
+          <a class="dropdown-item">Settings</a>
         </div>
       </li>
 

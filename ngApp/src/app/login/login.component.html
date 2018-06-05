@@ -3,19 +3,20 @@
   <div class="form-group row">
 
     <div class="form-group col-md-6">
-      <input [(ngModel)]="loginUserData.username" name="username" type="text" class="form-control" placeholder="Nom d'utilisateur" required>
+      <input [(ngModel)]="loginUserData.username" name="username" type="text" class="form-control" placeholder="Username" required>
     </div>
 
     <div class="form-group col-md-6">
-      <input [(ngModel)]="loginUserData.password" name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+      <input [(ngModel)]="loginUserData.password" name="password" type="password" class="form-control" placeholder="Password" required>
     </div>
 
   </div>
   <div class="row col-md-12">
 
     <button (click)="loginUser()" type="button" class="btn btn-success float-right">Login</button>
+    <span class="d-none text-danger ml-5 mt-2 ">Forbidden Login / Password</span>
     <label for="registerProposal" class="ml-auto text-dark mt-2 mr-3"><span>Pas encore de compte ?</span></label>
-    <a class="mt-2 text-color--main" routerLink="/register">Inscription</a>
+    <a class="mt-2" routerLink="/register">Register</a>
 
   </div>
 
