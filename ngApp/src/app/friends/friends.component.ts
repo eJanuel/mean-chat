@@ -30,7 +30,6 @@ export class FriendsComponent implements OnInit {
   }
 
   sendRequest(userData) {
-    console.log('1' + userData)
     this._friendService.sendRequest(userData)
     .subscribe(
       err => console.log(err),
