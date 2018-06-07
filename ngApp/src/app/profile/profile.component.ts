@@ -39,12 +39,12 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile() {
-    this._authService.logoutUser()
     this._profileService.deleteProfile(this.profile)
     .subscribe (
       res => console.log(res),
       err => console.log(err)
     )
+    this._authService.logoutUser()
   }
 
 }
