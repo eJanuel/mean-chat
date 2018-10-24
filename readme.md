@@ -12,7 +12,7 @@ Don't worry about the database, there is nothing you need in it
 
 ## Starting the App
 1. Navigate to the Application folder : `cd weird-chat/`
-1. Run the MongoDB service : sudo service mongod start`
+1. Run the MongoDB service : `sudo service mongod start`
 1. Navigate to the server folder : `cd server/`
 1. Run the server with node : `node server.js`
 1. Open a new terminal
