@@ -3,7 +3,7 @@
 
 ## Installation :
 
-1. Create a repository on your system : `mkdir weird-chat`
+1. Create a repository on your system : `mkdir mean-app`
 1. Navigate inside it : `cd mean-app/`
 1. Clone the repo : `https://github.com/PassNum-Promo4/projetwebs3-eJanuel.git`
 1. Navigate into the `ngApp` folder : `cd ngApp/`
